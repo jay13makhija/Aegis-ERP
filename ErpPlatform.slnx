@@ -1,0 +1,57 @@
+<Solution>
+  <Folder Name="/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Erp.BuildingBlocks.Application/Erp.BuildingBlocks.Application.csproj" />
+    <Project Path="src/BuildingBlocks/Erp.BuildingBlocks.Domain/Erp.BuildingBlocks.Domain.csproj" />
+    <Project Path="src/BuildingBlocks/Erp.BuildingBlocks.Infrastructure/Erp.BuildingBlocks.Infrastructure.csproj" />
+    <Project Path="src/BuildingBlocks/Erp.BuildingBlocks.Web/Erp.BuildingBlocks.Web.csproj" />
+    <Project Path="src/BuildingBlocks/Erp.Contracts/Erp.Contracts.csproj" />
+  </Folder>
+  <Folder Name="/Gateway/">
+    <Project Path="src/Gateway/Erp.Gateway/Erp.Gateway.csproj" />
+  </Folder>
+  <Folder Name="/Services/Analytics/">
+    <Project Path="src/Services/Analytics/Erp.Analytics.Api/Erp.Analytics.Api.csproj" />
+    <Project Path="src/Services/Analytics/Erp.Analytics.Application/Erp.Analytics.Application.csproj" />
+    <Project Path="src/Services/Analytics/Erp.Analytics.Domain/Erp.Analytics.Domain.csproj" />
+    <Project Path="src/Services/Analytics/Erp.Analytics.Infrastructure/Erp.Analytics.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Audit/">
+    <Project Path="src/Services/Audit/Erp.Audit.Api/Erp.Audit.Api.csproj" />
+    <Project Path="src/Services/Audit/Erp.Audit.Application/Erp.Audit.Application.csproj" />
+    <Project Path="src/Services/Audit/Erp.Audit.Domain/Erp.Audit.Domain.csproj" />
+    <Project Path="src/Services/Audit/Erp.Audit.Infrastructure/Erp.Audit.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Identity/">
+    <Project Path="src/Services/Identity/Erp.Identity.Api/Erp.Identity.Api.csproj" />
+    <Project Path="src/Services/Identity/Erp.Identity.Application/Erp.Identity.Application.csproj" />
+    <Project Path="src/Services/Identity/Erp.Identity.Domain/Erp.Identity.Domain.csproj" />
+    <Project Path="src/Services/Identity/Erp.Identity.Infrastructure/Erp.Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Inventory/">
+    <Project Path="src/Services/Inventory/Erp.Inventory.Api/Erp.Inventory.Api.csproj" />
+    <Project Path="src/Services/Inventory/Erp.Inventory.Application/Erp.Inventory.Application.csproj" />
+    <Project Path="src/Services/Inventory/Erp.Inventory.Domain/Erp.Inventory.Domain.csproj" />
+    <Project Path="src/Services/Inventory/Erp.Inventory.Infrastructure/Erp.Inventory.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Localization/">
+    <Project Path="src/Services/Localization/Erp.Localization.Api/Erp.Localization.Api.csproj" />
+    <Project Path="src/Services/Localization/Erp.Localization.Application/Erp.Localization.Application.csproj" />
+    <Project Path="src/Services/Localization/Erp.Localization.Domain/Erp.Localization.Domain.csproj" />
+    <Project Path="src/Services/Localization/Erp.Localization.Infrastructure/Erp.Localization.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Procurement/">
+    <Project Path="src/Services/Procurement/Erp.Procurement.Api/Erp.Procurement.Api.csproj" />
+    <Project Path="src/Services/Procurement/Erp.Procurement.Application/Erp.Procurement.Application.csproj" />
+    <Project Path="src/Services/Procurement/Erp.Procurement.Domain/Erp.Procurement.Domain.csproj" />
+    <Project Path="src/Services/Procurement/Erp.Procurement.Infrastructure/Erp.Procurement.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Workflow/">
+    <Project Path="src/Services/Workflow/Erp.Workflow.Api/Erp.Workflow.Api.csproj" />
+    <Project Path="src/Services/Workflow/Erp.Workflow.Application/Erp.Workflow.Application.csproj" />
+    <Project Path="src/Services/Workflow/Erp.Workflow.Domain/Erp.Workflow.Domain.csproj" />
+    <Project Path="src/Services/Workflow/Erp.Workflow.Infrastructure/Erp.Workflow.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/Erp.UnitTests/Erp.UnitTests.csproj" />
+  </Folder>
+</Solution>

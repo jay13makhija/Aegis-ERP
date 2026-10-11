@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.Workflow.Domain\Erp.Workflow.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Erp.BuildingBlocks.Application\Erp.BuildingBlocks.Application.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Erp.BuildingBlocks.Domain" />
+    <Using Include="Erp.BuildingBlocks.Application" />
+    <Using Include="Erp.Contracts" />
+    <Using Include="Erp.Workflow.Domain" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+syntax = "proto3";
+option csharp_namespace = "Erp.Inventory.Api.Grpc";
+package erp.inventory;
+
+// High-throughput stock lookup for other services / legacy systems (HTTP/2 on port 5102, JWT bearer auth).
+service StockQuery {
+  rpc GetAvailable (GetAvailableRequest) returns (GetAvailableReply);
+}
+message GetAvailableRequest { string product_id = 1; string warehouse_id = 2; }  // warehouse_id optional => all warehouses
+message GetAvailableReply { string product_id = 1; double on_hand = 2; double reserved = 3; double available = 4; }

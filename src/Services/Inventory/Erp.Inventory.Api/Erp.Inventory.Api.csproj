@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.Inventory.Infrastructure\Erp.Inventory.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Erp.BuildingBlocks.Web\Erp.BuildingBlocks.Web.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+    <PackageReference Include="Grpc.AspNetCore" />
+  </ItemGroup>
+  <ItemGroup><Protobuf Include="Grpc\inventory.proto" GrpcServices="Server" /></ItemGroup>
+  <ItemGroup>
+    <Using Include="Erp.BuildingBlocks.Application" />
+    <Using Include="Erp.BuildingBlocks.Infrastructure" />
+    <Using Include="Erp.BuildingBlocks.Web" />
+    <Using Include="Erp.Contracts" />
+    <Using Include="Erp.Inventory.Domain" />
+    <Using Include="Erp.Inventory.Application" />
+    <Using Include="Erp.Inventory.Infrastructure" />
+  </ItemGroup>
+</Project>

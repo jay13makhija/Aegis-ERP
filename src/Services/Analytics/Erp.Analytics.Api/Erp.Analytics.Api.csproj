@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.Analytics.Infrastructure\Erp.Analytics.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Erp.BuildingBlocks.Web\Erp.BuildingBlocks.Web.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Erp.BuildingBlocks.Application" />
+    <Using Include="Erp.BuildingBlocks.Infrastructure" />
+    <Using Include="Erp.BuildingBlocks.Web" />
+    <Using Include="Erp.Contracts" />
+    <Using Include="Erp.Analytics.Domain" />
+    <Using Include="Erp.Analytics.Application" />
+    <Using Include="Erp.Analytics.Infrastructure" />
+  </ItemGroup>
+</Project>

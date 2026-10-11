@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.Inventory.Application\Erp.Inventory.Application.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Erp.BuildingBlocks.Infrastructure\Erp.BuildingBlocks.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Erp.BuildingBlocks.Domain" />
+    <Using Include="Erp.BuildingBlocks.Application" />
+    <Using Include="Erp.BuildingBlocks.Infrastructure" />
+    <Using Include="Erp.Contracts" />
+    <Using Include="Erp.Inventory.Domain" />
+    <Using Include="Erp.Inventory.Application" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+</Project>

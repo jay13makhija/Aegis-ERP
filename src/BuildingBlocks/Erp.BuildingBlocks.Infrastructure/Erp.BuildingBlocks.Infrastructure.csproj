@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup><FrameworkReference Include="Microsoft.AspNetCore.App" /></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.BuildingBlocks.Application\Erp.BuildingBlocks.Application.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="RabbitMQ.Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Erp.BuildingBlocks.Domain" />
+    <Using Include="Erp.BuildingBlocks.Application" />
+    <Using Include="Erp.Contracts" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+</Project>

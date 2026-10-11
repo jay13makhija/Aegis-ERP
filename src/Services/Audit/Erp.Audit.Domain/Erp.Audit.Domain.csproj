@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Erp.BuildingBlocks.Domain\Erp.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Erp.Contracts\Erp.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Erp.BuildingBlocks.Domain" />
+    <Using Include="Erp.Contracts" />
+  </ItemGroup>
+</Project>

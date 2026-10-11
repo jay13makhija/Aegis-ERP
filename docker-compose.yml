@@ -1,0 +1,95 @@
+# Modular deployment: start only what you need, e.g.  docker compose up sqlserver rabbitmq identity inventory gateway
+# (a module that is not started simply returns 502 at the gateway; no other service depends on it synchronously).
+x-service-env: &env
+  RabbitMq__Host: rabbitmq
+  Jwt__SigningKey: ${JWT_SIGNING_KEY}
+  Encryption__Key: ${ENCRYPTION_KEY}
+  Database__AutoMigrate: "true"
+  OpenApi__Enabled: "true"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment: { ACCEPT_EULA: "Y", MSSQL_SA_PASSWORD: "${SA_PASSWORD}" }
+    ports: ["1433:1433"]
+    volumes: [sqldata:/var/opt/mssql]
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      retries: 20
+  rabbitmq:
+    image: rabbitmq:4-management
+    ports: ["5672:5672", "15672:15672"]
+    healthcheck: { test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"], interval: 10s, retries: 20 }
+
+  identity:
+    build: { context: ., args: { PROJECT: src/Services/Identity/Erp.Identity.Api, DLL: Erp.Identity.Api.dll } }
+    environment:
+      <<: *env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=Erp_Identity;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+      Platform__ApiKey: ${PLATFORM_API_KEY}
+    ports: ["5001:5001"]
+    depends_on: { sqlserver: { condition: service_healthy }, rabbitmq: { condition: service_healthy } }
+
+  inventory:
+    build: { context: ., args: { PROJECT: src/Services/Inventory/Erp.Inventory.Api, DLL: Erp.Inventory.Api.dll } }
+    environment:
+      <<: *env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=Erp_Inventory;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+    ports: ["5002:5002","5102:5102"]
+    depends_on: { sqlserver: { condition: service_healthy }, rabbitmq: { condition: service_healthy } }
+
+  procurement:
+    build: { context: ., args: { PROJECT: src/Services/Procurement/Erp.Procurement.Api, DLL: Erp.Procurement.Api.dll } }
+    environment:
+      <<: *env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=Erp_Procurement;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+    ports: ["5003:5003"]
+    depends_on: { sqlserver: { condition: service_healthy }, rabbitmq: { condition: service_healthy } }
+
+  localization:
+    build: { context: ., args: { PROJECT: src/Services/Localization/Erp.Localization.Api, DLL: Erp.Localization.Api.dll } }
+    environment:
+      <<: *env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=Erp_Localization;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+    ports: ["5004:5004"]
+    depends_on: { sqlserver: { condition: service_healthy }, rabbitmq: { condition: service_healthy } }
+
+  workflow:
+    build: { context: ., args: { PROJECT: src/Services/Workflow/Erp.Workflow.Api, DLL: Erp.Workflow.Api.dll } }
+    environment:
+      <<: *env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=Erp_Workflow;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+    ports: ["5005:5005"]
+    depends_on: { sqlserver: { condition: service_healthy }, rabbitmq: { condition: service_healthy } }
+
+  audit:
+    build: { context: ., args: { PROJECT: src/Services/Audit/Erp.Audit.Api, DLL: Erp.Audit.Api.dll } }
+    environment:
+      <<: *env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=Erp_Audit;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+    ports: ["5006:5006"]
+    depends_on: { sqlserver: { condition: service_healthy }, rabbitmq: { condition: service_healthy } }
+
+  analytics:
+    build: { context: ., args: { PROJECT: src/Services/Analytics/Erp.Analytics.Api, DLL: Erp.Analytics.Api.dll } }
+    environment:
+      <<: *env
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=Erp_Analytics;User Id=sa;Password=${SA_PASSWORD};TrustServerCertificate=True"
+    ports: ["5007:5007"]
+    depends_on: { sqlserver: { condition: service_healthy }, rabbitmq: { condition: service_healthy } }
+
+  gateway:
+    build: { context: ., args: { PROJECT: src/Gateway/Erp.Gateway, DLL: Erp.Gateway.dll } }
+    environment:
+      ReverseProxy__Clusters__identity__Destinations__d1__Address: http://identity:5001
+      ReverseProxy__Clusters__inventory__Destinations__d1__Address: http://inventory:5002
+      ReverseProxy__Clusters__procurement__Destinations__d1__Address: http://procurement:5003
+      ReverseProxy__Clusters__localization__Destinations__d1__Address: http://localization:5004
+      ReverseProxy__Clusters__workflow__Destinations__d1__Address: http://workflow:5005
+      ReverseProxy__Clusters__audit__Destinations__d1__Address: http://audit:5006
+      ReverseProxy__Clusters__analytics__Destinations__d1__Address: http://analytics:5007
+    ports: ["5000:5000"]
+
+volumes:
+  sqldata:

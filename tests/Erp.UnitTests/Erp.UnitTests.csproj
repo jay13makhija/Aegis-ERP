@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><IsPackable>false</IsPackable></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Services\Inventory\Erp.Inventory.Domain\Erp.Inventory.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Services\Procurement\Erp.Procurement.Domain\Erp.Procurement.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Services\Workflow\Erp.Workflow.Domain\Erp.Workflow.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Services\Localization\Erp.Localization.Application\Erp.Localization.Application.csproj" />
+    <ProjectReference Include="..\..\src\Services\Analytics\Erp.Analytics.Application\Erp.Analytics.Application.csproj" />
+    <ProjectReference Include="..\..\src\Services\Audit\Erp.Audit.Domain\Erp.Audit.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup><Using Include="Xunit" /></ItemGroup>
+</Project>
